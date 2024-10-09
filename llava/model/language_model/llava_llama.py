@@ -32,7 +32,7 @@ from llava.constants import IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_S
 
 class LlavaConfig(LlamaConfig):
     model_type = "llava_llama"
-    use_mm_norm = False
+    use_moca = False
     mm_norm_std = 0.
 
 

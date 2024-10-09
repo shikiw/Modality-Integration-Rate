@@ -16,7 +16,7 @@ WANDB_PROJECT=pretrain-mod-loss MASTER_PORT=29598 deepspeed llava/train/train_me
     --mm_vision_select_layer -2 \
     --mm_use_im_start_end False \
     --mm_use_im_patch_token False \
-    --use_mm_norm True \
+    --use_moca True \
     --mm_norm_std 0. \
     --bf16 True \
     --output_dir ./checkpoints/$PRETRAIN_NAME \
@@ -52,7 +52,7 @@ WANDB_PROJECT=sft-mod-loss MASTER_PORT=29598 deepspeed llava/train/train_mem.py 
     --mm_vision_select_layer -2 \
     --mm_use_im_start_end False \
     --mm_use_im_patch_token False \
-    --use_mm_norm True \
+    --use_moca True \
     --mm_norm_std 0. \
     --image_aspect_ratio pad \
     --group_by_modality_length True \

@@ -806,12 +806,12 @@ class LlamaDecoderLayer(nn.Module):
         self.input_layernorm = LlamaRMSNorm(config.hidden_size, eps=config.rms_norm_eps)
         self.post_attention_layernorm = LlamaRMSNorm(config.hidden_size, eps=config.rms_norm_eps)
 
-        if hasattr(config, "use_mm_norm"):
-            self.use_mm_norm = config.use_mm_norm
-            if self.use_mm_norm:
+        if hasattr(config, "use_moca"):
+            self.use_moca = config.use_moca
+            if self.use_moca:
                 self.modality_layernorm = LlamaMoCa(config.hidden_size, mm_norm_std=config.mm_norm_std)
         else:
-            self.use_mm_norm = False
+            self.use_moca = False
 
     def forward(
         self,
@@ -866,7 +866,7 @@ class LlamaDecoderLayer(nn.Module):
         hidden_states = residual + hidden_states
 
         # Modality Normalization
-        if self.use_mm_norm and modality_mask is not None and hidden_states.shape[1] > 1:
+        if self.use_moca and modality_mask is not None and hidden_states.shape[1] > 1:
             hidden_states = self.modality_layernorm(hidden_states, modality_mask)
 
         outputs = (hidden_states,)

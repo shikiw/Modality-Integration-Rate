@@ -69,7 +69,7 @@ class ModelArguments:
     mm_use_im_patch_token: bool = field(default=True)
     mm_patch_merge_type: Optional[str] = field(default='flat')
     mm_vision_select_feature: Optional[str] = field(default="patch")
-    use_mm_norm: Optional[bool] = field(default=False)
+    use_moca: Optional[bool] = field(default=False)
     mm_norm_std: Optional[float] = field(default=.02)
 
 
@@ -196,7 +196,7 @@ def safe_save_model_for_hf_trainer(trainer: transformers.Trainer,
                                    output_dir: str):
     """Collects the state dict and dump to disk."""
 
-    if getattr(trainer.args, "tune_mm_mlp_adapter", False) and not trainer.args.use_mm_norm:
+    if getattr(trainer.args, "tune_mm_mlp_adapter", False) and not trainer.args.use_moca:
         # Only save Adapter
         keys_to_match = ['mm_projector']
         if getattr(trainer.args, "use_im_start_end", False):
@@ -926,7 +926,7 @@ def train(attn_implementation=None):
         if 'mpt' in model_args.model_name_or_path:
             config = transformers.AutoConfig.from_pretrained(model_args.model_name_or_path, trust_remote_code=True)
             config.attn_config['attn_impl'] = training_args.mpt_attn_impl
-            config.update({"use_mm_norm": model_args.use_mm_norm})
+            config.update({"use_moca": model_args.use_moca})
             config.update({"mm_norm_std": model_args.mm_norm_std})
             model = LlavaMptForCausalLM.from_pretrained(
                 model_args.model_name_or_path,
@@ -936,7 +936,7 @@ def train(attn_implementation=None):
             )
         else:
             config = transformers.AutoConfig.from_pretrained(model_args.model_name_or_path, trust_remote_code=True)
-            config.update({"use_mm_norm": model_args.use_mm_norm})
+            config.update({"use_moca": model_args.use_moca})
             config.update({"mm_norm_std": model_args.mm_norm_std})
             model = LlavaLlamaForCausalLM.from_pretrained(
                 model_args.model_name_or_path,
@@ -1039,7 +1039,7 @@ def train(attn_implementation=None):
 
         model.config.tune_mm_mlp_adapter = training_args.tune_mm_mlp_adapter = model_args.tune_mm_mlp_adapter
         model.config.freeze_mm_mlp_adapter = training_args.freeze_mm_mlp_adapter
-        model_args.use_mm_norm = training_args.use_mm_norm = model.config.use_mm_norm
+        model_args.use_moca = training_args.use_moca = model.config.use_moca
 
         # if only tuning mlp
         if model_args.tune_mm_mlp_adapter:
@@ -1054,7 +1054,7 @@ def train(attn_implementation=None):
                 p.requires_grad = False
 
         # if using moca
-        if model_args.use_mm_norm:
+        if model_args.use_moca:
             for n, p in model.named_parameters():
                 if "modality_layernorm" in n:
                     p.requires_grad = True

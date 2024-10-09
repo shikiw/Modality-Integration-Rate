@@ -180,7 +180,7 @@ class LlavaMetaForCausalLM(ABC):
     ):
         vision_tower = self.get_vision_tower()
         if vision_tower is None or images is None or input_ids.shape[1] == 1:
-            if self.model.config.use_mm_norm and modality_mask is not None:
+            if self.model.config.use_moca and modality_mask is not None:
                 return input_ids, position_ids, attention_mask, modality_mask, past_key_values, None, labels
             return input_ids, position_ids, attention_mask, None, past_key_values, None, labels
 
@@ -266,8 +266,8 @@ class LlavaMetaForCausalLM(ABC):
         input_ids = [cur_input_ids[cur_attention_mask] for cur_input_ids, cur_attention_mask in zip(input_ids, attention_mask)]
         labels = [cur_labels[cur_attention_mask] for cur_labels, cur_attention_mask in zip(labels, attention_mask)]
 
-        if hasattr(self.model.config, "use_mm_norm"):
-            if self.model.config.use_mm_norm:
+        if hasattr(self.model.config, "use_moca"):
+            if self.model.config.use_moca:
                 all_modality_locs = []
                 for batch_idx, cur_input_ids in enumerate(input_ids):
                     modality_start_locs = torch.where(cur_input_ids == IMAGE_TOKEN_INDEX)[0].tolist()
@@ -370,8 +370,8 @@ class LlavaMetaForCausalLM(ABC):
         if _position_ids is None:
             position_ids = None
 
-        if hasattr(self.model.config, "use_mm_norm"):
-            if self.model.config.use_mm_norm:
+        if hasattr(self.model.config, "use_moca"):
+            if self.model.config.use_moca:
                 modality_mask = torch.zeros(
                     (new_input_embeds.shape[0], new_input_embeds.shape[1])).to(new_input_embeds.device)
                 for modelity_locs in all_modality_locs:
