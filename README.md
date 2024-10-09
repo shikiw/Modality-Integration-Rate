@@ -22,6 +22,7 @@ This repository provides the official PyTorch implementation of the following pa
 ## 🎯 News
 
 **[2024.10.10]** 🚀 We release the paper at [ArXiv]() and [HuggingFace]()!
+
 **[2024.10.10]** 🚀 This project page has been built!
 
 ## 👨‍💻 Todo
@@ -73,8 +74,8 @@ cd Modality-Integration-Rate
 conda create -n llava python=3.10 -y
 conda activate llava
 python -m pip install --upgrade pip  # enable PEP 660 support
-python -m pip install -e transformers-4.37.2
 python -m pip install -e .
+python -m pip install -e transformers-4.37.2
 ```
 3. Install additional packages for training cases
 ```
