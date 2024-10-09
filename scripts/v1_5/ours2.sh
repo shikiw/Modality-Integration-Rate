@@ -17,7 +17,7 @@ WANDB_PROJECT=pretrain-mm-norm MASTER_PORT=29577 deepspeed llava/train/train_mem
     --mm_use_im_start_end False \
     --mm_use_im_patch_token False \
     --use_moca True \
-    --mm_norm_std .02 \
+    --moca_std .02 \
     --bf16 True \
     --output_dir ./checkpoints/$PRETRAIN_NAME \
     --num_train_epochs 1 \
@@ -53,7 +53,7 @@ WANDB_PROJECT=sft-mm-norm MASTER_PORT=29577 deepspeed llava/train/train_mem.py \
     --mm_use_im_start_end False \
     --mm_use_im_patch_token False \
     --use_moca True \
-    --mm_norm_std .02 \
+    --moca_std .02 \
     --image_aspect_ratio pad \
     --group_by_modality_length True \
     --bf16 True \

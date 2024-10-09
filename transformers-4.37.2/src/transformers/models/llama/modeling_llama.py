@@ -120,13 +120,13 @@ ALL_LAYERNORM_LAYERS.append(LlamaRMSNorm)
 
 
 class LlamaMoCa(nn.Module):
-    def __init__(self, hidden_size, mm_norm_std=.02):
+    def __init__(self, hidden_size, moca_std=.02):
         """
         Learnable Modality Calibration for modality alignment.
         """
         super().__init__()
-        self.scale = nn.Parameter(torch.normal(1., mm_norm_std, size=(hidden_size,)))
-        self.shift = nn.Parameter(torch.normal(0., mm_norm_std, size=(hidden_size,)))
+        self.scale = nn.Parameter(torch.normal(1., moca_std, size=(hidden_size,)))
+        self.shift = nn.Parameter(torch.normal(0., moca_std, size=(hidden_size,)))
 
     def forward(self, hidden_states, modality_mask):
         input_dtype = hidden_states.dtype
@@ -140,7 +140,7 @@ ALL_LAYERNORM_LAYERS.append(LlamaMoCa)
 
 
 class FeatureAlign(nn.Module):
-    def __init__(self, hidden_size, mm_norm_std=.02):
+    def __init__(self, hidden_size, moca_std=.02):
         """
         Learnable norm for modality alignment.
         """
@@ -809,7 +809,7 @@ class LlamaDecoderLayer(nn.Module):
         if hasattr(config, "use_moca"):
             self.use_moca = config.use_moca
             if self.use_moca:
-                self.modality_layernorm = LlamaMoCa(config.hidden_size, mm_norm_std=config.mm_norm_std)
+                self.modality_layernorm = LlamaMoCa(config.hidden_size, moca_std=config.moca_std)
         else:
             self.use_moca = False
 

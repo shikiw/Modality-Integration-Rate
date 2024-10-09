@@ -70,7 +70,7 @@ class ModelArguments:
     mm_patch_merge_type: Optional[str] = field(default='flat')
     mm_vision_select_feature: Optional[str] = field(default="patch")
     use_moca: Optional[bool] = field(default=False)
-    mm_norm_std: Optional[float] = field(default=.02)
+    moca_std: Optional[float] = field(default=.02)
 
 
 @dataclass
@@ -927,7 +927,7 @@ def train(attn_implementation=None):
             config = transformers.AutoConfig.from_pretrained(model_args.model_name_or_path, trust_remote_code=True)
             config.attn_config['attn_impl'] = training_args.mpt_attn_impl
             config.update({"use_moca": model_args.use_moca})
-            config.update({"mm_norm_std": model_args.mm_norm_std})
+            config.update({"moca_std": model_args.moca_std})
             model = LlavaMptForCausalLM.from_pretrained(
                 model_args.model_name_or_path,
                 config=config,
@@ -937,7 +937,7 @@ def train(attn_implementation=None):
         else:
             config = transformers.AutoConfig.from_pretrained(model_args.model_name_or_path, trust_remote_code=True)
             config.update({"use_moca": model_args.use_moca})
-            config.update({"mm_norm_std": model_args.mm_norm_std})
+            config.update({"moca_std": model_args.moca_std})
             model = LlavaLlamaForCausalLM.from_pretrained(
                 model_args.model_name_or_path,
                 config=config,
