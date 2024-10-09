@@ -46,22 +46,22 @@ def read_story_file(file_path):
 
 
 ### Data ###
-# text_data_path = args.text_data_path
-# data_texts = os.listdir(text_data_path)
+text_data_path = args.text_data_path
+data_texts = os.listdir(text_data_path)
 
-# image_base_path = args.image_data_path
-# data_images = os.listdir(image_base_path)
+image_base_path = args.image_data_path
+data_images = os.listdir(image_base_path)
 
 # NOTE: You can specify your own data for evaluation
 # NOTE: For example, we can use images from TextVQA val and text from CNN/DM as follows.
-# cnn/daily mail and textvqa
-text_data_path = "/mnt/hwfile/mllm/huangqidong/nlp/cnn/stories"
-data_texts = os.listdir(text_data_path)
-# TextVQA
-image_base_path = "/mnt/hwfile/mllm/chenlin/llava/data/eval/textvqa/train_images/"
-question_file = "./playground/data/eval/textvqa/llava_textvqa_val_v051_ocr.jsonl"
-questions = [json.loads(q) for q in open(os.path.expanduser(question_file), "r")]
-data_images = [questions[i]["image"] for i in range(len(questions))]
+# # cnn/daily mail and textvqa
+# text_data_path = "/mnt/hwfile/mllm/huangqidong/nlp/cnn/stories"
+# data_texts = os.listdir(text_data_path)
+# # TextVQA
+# image_base_path = "/mnt/hwfile/mllm/chenlin/llava/data/eval/textvqa/train_images/"
+# question_file = "./playground/data/eval/textvqa/llava_textvqa_val_v051_ocr.jsonl"
+# questions = [json.loads(q) for q in open(os.path.expanduser(question_file), "r")]
+# data_images = [questions[i]["image"] for i in range(len(questions))]
 
 
 ### Get vision/text tokens ###

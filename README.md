@@ -22,6 +22,13 @@ This repository provides the official PyTorch implementation of the following pa
 ## 🎯 News
 
 **[2024.10.10]** 🚀 We release the paper at [ArXiv]() and [HuggingFace]()!
+**[2024.10.10]** 🚀 This project page has been built!
+
+## 👨‍💻 Todo
+
+- [x] Release the code of MIR
+- [x] Release the training code and evaluation code of MoCa
+- [ ] Release the data and checkpoints 
 
 
 
@@ -53,7 +60,8 @@ If you just want to use MoCa on your own model, we recommand you to following th
 
 
 
-## Setup
+## 📜 Setup
+If you want to use our codebase (modified on LLaVA) for reproduction, you are recommanded to build a new environment though the steps below. 
 The following steps are just listed for Linux. If you are using macOS or Windows, please refer to [LLaVA](https://github.com/haotian-liu/LLaVA?tab=readme-ov-file).
 1. Clone this repository and navigate to Modality-Integration-Rate folder
 ```
@@ -65,6 +73,7 @@ cd Modality-Integration-Rate
 conda create -n llava python=3.10 -y
 conda activate llava
 python -m pip install --upgrade pip  # enable PEP 660 support
+python -m pip install -e transformers-4.37.2
 python -m pip install -e .
 ```
 3. Install additional packages for training cases
@@ -72,3 +81,64 @@ python -m pip install -e .
 pythom -m pip install -e ".[train]"
 pythom -m pip install flash-attn --no-build-isolation
 ```
+
+
+## MIR
+
+To reproduce the MIR implementation on this codebase, you can follow these steps:
+1. Specify the ```text_data_path``` and ```image_data_path``` for MIR calculation. You can also specify them like [Line55-64](https://github.com/shikiw/Modality-Integration-Rate/blob/b9ec4d3b080444dcf2b2b7cc3d21a3fdb9dcb42b/mir.py#L55-L64) in ```mir.py```, using TextVQA val images and CNN/DM text by default, i.e., 
+   1) Download [TextVQA_0.5.1_val.json](https://dl.fbaipublicfiles.com/textvqa/data/TextVQA_0.5.1_val.json) and [images](https://dl.fbaipublicfiles.com/textvqa/images/train_val_images.zip) and extract to ```PATH/TO/VISION/DATA```.
+   2) Download [CNN stories](https://cs.nyu.edu/~kcho/DMQA/) and extract to ```PATH/TO/TEXT/DATA```.
+   3) Modify [Line55-64](https://github.com/shikiw/Modality-Integration-Rate/blob/b9ec4d3b080444dcf2b2b7cc3d21a3fdb9dcb42b/mir.py#L55-L64) with the text data path and image data path.
+2. If you pre-train only MLP, run this command:
+```
+python mir.py --model_path PATH/TO/MODEL --base_llm PATH/TO/LLM --eval_num 100 --mode fast
+```
+3. If your pre-train any part of ViT or base LLM, run this command:
+```
+python mir.py --model_path PATH/TO/MODEL --eval_num 100 --mode fast
+```
+
+## Train
+This codebase is based on [LLaVA](https://github.com/haotian-liu/LLaVA) and [ShareGPT4V](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V), where we introduce some new features and now it supports the following inputs in the launch script:
+   1) ```--tune_vision_tower``` and ```--tune_vit_from_layer```
+   2) ```--tune_language_model``` and ```--tune_llm_utill_layer```
+   3) ```--tune_entire_model```
+   4) ```--data_scale```
+   5) ```--use_moca``` and ```--moca_std```
+
+Some cases for reference: 
+
+1. To pre-train the model with the customized data scale (e.g., 200K):
+```
+sh scripts/v1_5/pre_data_scale.sh
+```
+
+2. To pre-train the model (unlock the 13-24 layer of ViT and the 1-16 layer of base LLM), and SFT (unlock entire LLM by default):
+```
+sh scripts/v1_5/pre_unlock_vit-12_llm-16_sft.sh
+```
+
+3. To pre-train the model (unlock the 13-24 layer of ViT and the entire base LLM), and SFT (unlock entire LLM by default):
+```
+sh scripts/v1_5/pre_unlock_vit-12_llm-all_sft.sh
+```
+
+4. To apply MoCa in training:
+```
+sh scripts/v1_5/pre_sft_moca.sh
+```
+
+
+## Evaluation
+We follow the original evaluation in [LLaVA](https://github.com/haotian-liu/LLaVA) for most of benchmarks. For [MMStar](https://github.com/MMStar-Benchmark/MMStar), we use [VLMEvalKit](https://github.com/open-compass/VLMEvalKit). 
+
+See [Evaluation.md](https://github.com/haotian-liu/LLaVA/blob/main/docs/Evaluation.md). 
+
+
+## Acknowledgement
+This repo is based on the codebase of [LLaVA](https://github.com/haotian-liu/LLaVA) and [ShareGPT4V](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V). Thanks for their impressive works!
+
+
+
+

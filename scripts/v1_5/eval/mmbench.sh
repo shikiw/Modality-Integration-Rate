@@ -24,7 +24,6 @@ CKPT="llava-v1.5-7b-pretrain-allava-share4v-100K-unlock-vit_12-llm_all-sft-llava
 #     --upload-dir ./playground/data/eval/mmbench/answers_upload/$SPLIT \
 #     --experiment $CKPT
 
-# python playground/data/eval/mmbench/mmbench_excel_test.py ./playground/data/eval/mmbench/answers_upload/$SPLIT/$CKPT.xlsx
 
 
 ## whole model
@@ -44,5 +43,3 @@ python scripts/convert_mmbench_for_submission.py \
     --result-dir ./playground/data/eval/mmbench/answers/$SPLIT \
     --upload-dir ./playground/data/eval/mmbench/answers_upload/$SPLIT \
     --experiment $CKPT
-
-python playground/data/eval/mmbench/mmbench_excel_test.py ./playground/data/eval/mmbench/answers_upload/$SPLIT/$CKPT.xlsx

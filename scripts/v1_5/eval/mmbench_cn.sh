@@ -20,5 +20,3 @@ python scripts/convert_mmbench_for_submission.py \
     --result-dir ./playground/data/eval/mmbench_cn/answers/$SPLIT \
     --upload-dir ./playground/data/eval/mmbench_cn/answers_upload/$SPLIT \
     --experiment $CKPT 
-
-python playground/data/eval/mmbench/mmbench_excel_test.py ./playground/data/eval/mmbench_cn/answers_upload/$SPLIT/$CKPT.xlsx
