@@ -1,13 +1,13 @@
 # Deciphering Cross-Modal Alignment in Large Vision-Language Models with Modality Integration Rate
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-g.svg)](https://opensource.org/licenses/MIT)
-[![Arxiv](https://img.shields.io/badge/arXiv-XXXX-B21A1B)](https://github.com/shikiw/Modality-Integration-Rate)
-[![Hugging Face Transformers](https://img.shields.io/badge/%F0%9F%A4%97-HuggingFace-blue)](https://github.com/shikiw/Modality-Integration-Rate)
+[![Arxiv](https://img.shields.io/badge/arXiv-2410.07167-B21A1B)](https://arxiv.org/abs/2410.07167)
+[![Hugging Face Transformers](https://img.shields.io/badge/%F0%9F%A4%97-HuggingFace-blue)](https://huggingface.co/papers/2410.07167)
 [![GitHub Stars](https://img.shields.io/github/stars/shikiw/Modality-Integration-Rate?style=social)](https://github.com/shikiw/Modality-Integration-Rate/stargazers)
 
 
 This repository provides the official PyTorch implementation of the following paper: 
-> [**Deciphering Cross-Modal Alignment in Large Vision-Language Models with Modality Integration Rate**](https://github.com/shikiw/Modality-Integration-Rate) <br>
+> [**Deciphering Cross-Modal Alignment in Large Vision-Language Models with Modality Integration Rate**](https://arxiv.org/abs/2410.07167) <br>
 > [Qidong Huang](https://shikiw.github.io/)<sup>1,2</sup>, 
 > [Xiaoyi Dong](https://scholar.google.com/citations?user=FscToE0AAAAJ&hl=en)<sup>2,3</sup>, 
 > [Pan Zhang](https://panzhang0212.github.io/)<sup>2</sup>,
@@ -21,7 +21,7 @@ This repository provides the official PyTorch implementation of the following pa
 
 ## 🎯 News
 
-**[2024.10.10]** 🚀 We release the paper at [ArXiv]() and [HuggingFace]()!
+**[2024.10.10]** 🚀 We release the paper at [ArXiv](https://arxiv.org/abs/2410.07167) and [HuggingFace](https://huggingface.co/papers/2410.07167)!
 
 **[2024.10.10]** 🚀 This project page has been built!
 
