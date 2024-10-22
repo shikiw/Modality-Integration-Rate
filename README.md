@@ -141,5 +141,15 @@ See [Evaluation.md](https://github.com/haotian-liu/LLaVA/blob/main/docs/Evaluati
 This repo is based on the codebase of [LLaVA](https://github.com/haotian-liu/LLaVA) and [ShareGPT4V](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V). Thanks for their impressive works!
 
 
+## Citation
+If you find this work useful for your research, please cite our paper:
+```
+@article{huang2024deciphering,
+  title={Deciphering Cross-Modal Alignment in Large Vision-Language Models with Modality Integration Rate},
+  author={Huang, Qidong and Dong, Xiaoyi and Zhang, Pan and Zang, Yuhang and Cao, Yuhang and Wang, Jiaqi and Lin, Dahua and Zhang, Weiming and Yu, Nenghai},
+  journal={arXiv preprint arXiv:2410.07167},
+  year={2024}
+}
+```
 
 
