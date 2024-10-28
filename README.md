@@ -29,7 +29,7 @@ This repository provides the official PyTorch implementation of the following pa
 
 - [x] Release the code of MIR
 - [x] Release the training code and evaluation code of MoCa
-- [ ] Release the data and checkpoints 
+- [x] Release the checkpoints of MoCa
 
 
 
@@ -99,6 +99,16 @@ python mir.py --model_path PATH/TO/MODEL --base_llm PATH/TO/LLM --eval_num 100 -
 ```
 python mir.py --model_path PATH/TO/MODEL --eval_num 100 --mode fast
 ```
+
+## MoCa
+Our codebase supports ```--use_moca``` to activate the implementation of MoCa. Check out ```scripts/v1_5/pre_sft_moca.sh``` for more details.
+
+| Model | Size | Schedule | Average| MMStar | MME | MMB | MMB-CN | SEED-IMG | TextVQA | MM-Vet | POPE | GQA |
+|------------|-----------|--------|---|---|---|---|---|---|---|---|---|---|
+| LLaVA-v1.5 | 7B | full_ft-1e | 59.1 | 30.3 | 1510.7 | 64.3 | 58.3 | 66.1 | 58.2 | 31.1 | 85.9 | 62.0 |
+| + MoCa | 7B | full_ft-1e | 60.6 | 36.5 | 1481.0 | 66.8 | 60.0 | 67.0 | 58.7 | 32.2 | 86.9 | 62.8 |
+
+The [pretrained](https://huggingface.co/shikiw/LLaVA-v1.5-MoCa-7B-pretrain) and [finetuned](https://huggingface.co/shikiw/LLaVA-v1.5-MoCa-7B) checkpoints are released.
 
 ## Train
 This codebase is based on [LLaVA](https://github.com/haotian-liu/LLaVA) and [ShareGPT4V](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V), where we introduce some new features and now it supports the following inputs in the launch script:
