@@ -106,7 +106,7 @@ Our codebase supports ```--use_moca``` to activate the implementation of MoCa. C
 | Model | Size | Schedule | Average| MMStar | MME | MMB | MMB-CN | SEED-IMG | TextVQA | MM-Vet | POPE | GQA |
 |----------------|-----------|--------|---|---|---|---|---|---|---|---|---|---|
 | LLaVA-v1.5 | 7B | full_ft-1e | 59.1 | 30.3 | 1510.7 | 64.3 | 58.3 | 66.1 | 58.2 | 31.1 | 85.9 | 62.0 |
-| + MoCa | 7B | full_ft-1e | 60.6 | 36.5 | 1481.0 | 66.8 | 60.0 | 67.0 | 58.7 | 32.2 | 86.9 | 62.8 |
+| +MoCa | 7B | full_ft-1e | 60.6 | 36.5 | 1481.0 | 66.8 | 60.0 | 67.0 | 58.7 | 32.2 | 86.9 | 62.8 |
 
 The [pretrained](https://huggingface.co/shikiw/LLaVA-v1.5-MoCa-7B-pretrain) and [finetuned](https://huggingface.co/shikiw/LLaVA-v1.5-MoCa-7B) checkpoints are released.
 
