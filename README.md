@@ -43,7 +43,7 @@ If you just want to use MIR as the pre-training indicator of your own model, no 
 ```
 python mir.py --model_path PATH/TO/MODEL --base_llm PATH/TO/LLM --text_data_path PATH/TO/TEXT/DATA --image_data_path PATH/TO/VISION/DATA --eval_num 100 --mode fast
 ```
-Note that ```base_llm``` is not required if you haven't train the base LLM during pre-training. 
+Note that ```base_llm``` is not required if you train the base LLM during pre-training. 
 
 You can also adjust the args to the intialization style of your model.
 
