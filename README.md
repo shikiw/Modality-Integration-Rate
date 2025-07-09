@@ -1,4 +1,4 @@
-# [ICCV 2025] Deciphering Cross-Modal Alignment in Large Vision-Language Models with Modality Integration Rate
+# Deciphering Cross-Modal Alignment in Large Vision-Language Models with Modality Integration Rate (ICCV 2025)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-g.svg)](https://opensource.org/licenses/MIT)
 [![Arxiv](https://img.shields.io/badge/arXiv-2410.07167-B21A1B)](https://arxiv.org/abs/2410.07167)
