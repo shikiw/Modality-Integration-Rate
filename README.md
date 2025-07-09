@@ -1,4 +1,4 @@
-# Deciphering Cross-Modal Alignment in Large Vision-Language Models with Modality Integration Rate
+# [ICCV 2025] Deciphering Cross-Modal Alignment in Large Vision-Language Models with Modality Integration Rate
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-g.svg)](https://opensource.org/licenses/MIT)
 [![Arxiv](https://img.shields.io/badge/arXiv-2410.07167-B21A1B)](https://arxiv.org/abs/2410.07167)
@@ -20,6 +20,8 @@ This repository provides the official PyTorch implementation of the following pa
 > <sup>1</sup>University of Science and Technology of China, <sup>2</sup>Shanghai AI Laboratory, <sup>3</sup>The Chinese University of Hong Kong <br>
 
 ## 🎯 News
+
+**[2025.06.26]** 🚀 Our paper has been accepted by ICCV 2025!
 
 **[2024.10.10]** 🚀 We release the paper at [ArXiv](https://arxiv.org/abs/2410.07167) and [HuggingFace](https://huggingface.co/papers/2410.07167)!
 
